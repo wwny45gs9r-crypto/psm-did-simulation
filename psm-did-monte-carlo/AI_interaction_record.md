@@ -1036,11 +1036,7 @@ figures/balance_check.png
 
 DID 比较的是处理组和控制组在处理前后的变化差异：
 
-\hat{\tau}_{DID}
-=
-(\bar{Y}_{treat,post}-\bar{Y}_{treat,pre})
--
-(\bar{Y}_{control,post}-\bar{Y}_{control,pre})
+\hat{\tau}_{DID}=(\bar{Y}_{treat,post}-\bar{Y}_{treat,pre})-(\bar{Y}_{control,post}-\bar{Y}_{control,pre})
 
 它的优势是可以消除时间不变的未观测异质性。
 
@@ -1062,9 +1058,7 @@ Y_{it} = \alpha_i + \lambda_t + \tau D_iPost_t + \epsilon_{it}
 
 但 DID 依赖核心假设：
 
-E[Y(0)_{post}-Y(0)_{pre}|D=1]
-=
-E[Y(0)_{post}-Y(0)_{pre}|D=0]
+E[Y(0)_{post}-Y(0)_{pre}|D=1]=E[Y(0)_{post}-Y(0)_{pre}|D=0]
 
 也就是平行趋势。
 
@@ -1104,9 +1098,7 @@ E[Y(0)_{post}-Y(0)_{pre}|D=0]
 
 PSM-DID 不要求处理组和所有控制组无条件平行趋势，而是要求：
 
-E[\Delta Y(0)|D=1,X]
-=
-E[\Delta Y(0)|D=0,X]
+E[\Delta Y(0)|D=1,X]=E[\Delta Y(0)|D=0,X]
 
 意思是：
 
@@ -3359,27 +3351,12 @@ Y_{i1}=\alpha_i+\beta X_i+\theta U_i+\lambda+\delta X_i+\rho U_i+\tau D_i+\epsil
 
 3. 估计方法与评价指标
 
-##3. 估计方法与评价指标
-本文在每个场景中比较四类估计方法：单独 PSM、单独 DID、控制 \(X_i\) 的 DID，以及 PSM-DID。
-###3.1 单独 PSM
-单独 PSM 使用处理前协变量 \(X_i\) 估计倾向得分：
-\[
-\hat e(X_i)=P(D_i=1|X_i)
-\]
+#3. 估计方法与评价指标本文在每个场景中比较四类估计方法：单独 PSM、单独 DID、控制 \(X_i\) 的 DID，以及 PSM-DID。###3.1 单独 PSM单独 PSM 使用处理前协变量 \(X_i\) 估计倾向得分：\[\hat e(X_i)=P(D_i=1|X_i)\]
 本文使用 Logistic 回归估计倾向得分，并采用 1:1 最近邻匹配。匹配后，单独 PSM 通过比较处理组和对照组的处理后结果 \(Y_{i1}\) 均值差来估计处理效应。
 ###3.2 单独 DID
-DID 比较处理组和对照组处理前后的结果变化差异：
-\[
-\hat{\tau}_{DID}
-=
-(\bar{Y}_{T,post}-\bar{Y}_{T,pre})
--
-(\bar{Y}_{C,post}-\bar{Y}_{C,pre})
-\]
+DID 比较处理组和对照组处理前后的结果变化差异：\[\hat{\tau}_{DID}=(\bar{Y}_{T,post}-\bar{Y}_{T,pre})-(\bar{Y}_{C,post}-\bar{Y}_{C,pre})\]
 在两期数据中，也可以通过变化值回归实现：
-\[
-\Delta Y_i = \alpha + \tau D_i+\epsilon_i
-\]
+\[\Delta Y_i = \alpha + \tau D_i+\epsilon_i\]
 其中，\(D_i\) 的系数即为 DID 估计量。
 ###3.3 控制 \(X_i\) 的 DID
 为了比较控制可观测趋势差异后的 DID 表现，本文进一步估计：
@@ -3391,9 +3368,7 @@ DID 比较处理组和对照组处理前后的结果变化差异：
 PSM-DID 先使用处理前协变量 \(X_i\) 估计倾向得分并进行匹配，再在匹配样本中比较处理组和对照组的结果变化：
 \[
 \hat{\tau}_{PSM-DID}
-=
-E[\Delta Y_i|D_i=1, matched]
--
+=E[\Delta Y_i|D_i=1, matched]-
 E[\Delta Y_i|D_i=0, matched]
 \]
 本文采用基于 Logistic 倾向得分的 1:1 最近邻匹配。匹配采用有放回方式，即同一个对照组个体可以被多个处理组个体重复匹配。为了避免坏匹配，本文设置卡尺约束，卡尺取 \(0.2\times SD(\hat e(X))\)。在匹配前，本文使用 min-max 规则处理共同支持域，只保留处理组和对照组倾向得分分布重叠区间内的样本。
