@@ -196,6 +196,7 @@ Smith, J. A., & Todd, P. E. (2005). Does matching overcome LaLonde’s critique 
 Angrist, J. D., & Pischke, J. S. (2009). Mostly Harmless Econometrics.
 Cunningham, S. (2021). Causal Inference: The Mixtape.
 你看一下要求  
+
 **AI：** 我看完了。这个作业复杂，但结构其实很清楚：不是让你炫代码，而是让你用 Monte Carlo 模拟把 PSM-DID 的识别条件讲明白。老师要看的不是“我跑了500次”，而是你能不能证明：
 
 在什么样的数据生成机制下，DID 有效；
@@ -504,11 +505,7 @@ Y_{post} \sim D
 
 也就是：
 
-\hat{\tau}_{PSM-post}
-=
-E[Y_{post}|D=1, matched]
--
-E[Y_{post}|D=0, matched]
+\hat{\tau}_{PSM-post}=E[Y_{post}|D=1, matched]-E[Y_{post}|D=0, matched]
 
 这个更接近“传统 PSM”。
 
@@ -579,13 +576,7 @@ P(D=1|X)
 
 或者直接算：
 
-\hat{\tau}_{PSM-DID}
-=
-E[\Delta Y_i | D=1, matched]
--
-E[\Delta Y_i | D=0, matched]
-
-⸻
+\hat{\tau}_{PSM-DID}=E[\Delta Y_i | D=1, matched]-E[\Delta Y_i | D=0, matched]⸻
 
 六、结果表应该怎么呈现？
 
