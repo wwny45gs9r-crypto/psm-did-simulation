@@ -1,0 +1,7 @@
+Scenario,Stage,SMD_X,N
+A_Unconditional_Parallel_Trend,Before Matching,0.7935024315634261,1000
+A_Unconditional_Parallel_Trend,After Matching,0.0014910027927774318,986
+B_Conditional_Parallel_Trend,Before Matching,0.8265169455227238,1000
+B_Conditional_Parallel_Trend,After Matching,-0.0006038322566308183,862
+C_Unobserved_Time_Varying_Confounding,Before Matching,0.6157153212805473,1000
+C_Unobserved_Time_Varying_Confounding,After Matching,-0.0003535482883485153,928

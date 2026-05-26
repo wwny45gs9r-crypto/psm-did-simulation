@@ -1,0 +1,4 @@
+Scenario,Original_N,Original_Treated_N,Original_Control_N,Matched_N,Matched_Treated_N,Matched_Control_N,Mean_Match_Distance
+A_Unconditional_Parallel_Trend,1000,446,554,878,439,439,0.0011477307433825595
+B_Conditional_Parallel_Trend,1000,473,527,942,471,471,0.0010141233480411183
+C_Unobserved_Time_Varying_Confounding,1000,464,536,924,462,462,0.0006430995182863602
